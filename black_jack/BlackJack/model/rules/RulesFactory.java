@@ -6,6 +6,14 @@ public class RulesFactory {
     return new BasicHitStrategy();
   }
 
+  public IHitStrategy GetSoft17HitRule() {
+    return new Soft17HitStrategy();
+  }
+
+  public IWinRule GetBasicWinRule(){
+    return new BasicWinRule();
+  }
+
   public INewGameStrategy GetNewGameRule() {
     return new AmericanNewGameStrategy();
   }

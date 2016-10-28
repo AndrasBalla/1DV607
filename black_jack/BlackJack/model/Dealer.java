@@ -7,11 +7,14 @@ public class Dealer extends Player {
   private Deck m_deck;
   private INewGameStrategy m_newGameRule;
   private IHitStrategy m_hitRule;
+  private IWinRule m_winRule;
 
   public Dealer(RulesFactory a_rulesFactory) {
   
     m_newGameRule = a_rulesFactory.GetNewGameRule();
-    m_hitRule = a_rulesFactory.GetHitRule();
+    //m_hitRule = a_rulesFactory.GetHitRule();
+    m_hitRule = a_rulesFactory.GetSoft17HitRule();
+    m_winRule = a_rulesFactory.GetBasicWinRule();
     
     /*for(Card c : m_deck.GetCards()) {
       c.Show(true);
@@ -30,12 +33,21 @@ public class Dealer extends Player {
     return false;
   }
 
+  public boolean Stand() {
+    if (m_deck != null){
+      ShowHand();
+      while (m_hitRule.DoHit(this)){
+        duplicateCode(this);
+
+      }
+      return true;
+    }
+    return false;
+  }
+
   public boolean Hit(Player a_player) {
     if (m_deck != null && a_player.CalcScore() < g_maxScore && !IsGameOver()) {
-      Card c;
-      c = m_deck.GetCard();
-      c.Show(true);
-      a_player.DealCard(c);
+      duplicateCode(a_player);
       
       return true;
     }
@@ -48,7 +60,8 @@ public class Dealer extends Player {
     } else if (CalcScore() > g_maxScore) {
       return false;
     }
-    return CalcScore() >= a_player.CalcScore();
+
+    return m_winRule.equalOrHigherScore(this, a_player);
   }
 
   public boolean IsGameOver() {
@@ -56,6 +69,12 @@ public class Dealer extends Player {
         return true;
     }
     return false;
+  }
+  //TODO: Find a proper name for this.
+  private void duplicateCode(Player a_player){
+    Card c = m_deck.GetCard();
+    c.Show(true);
+    a_player.DealCard(c);
   }
   
 }
