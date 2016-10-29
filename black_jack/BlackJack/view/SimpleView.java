@@ -1,6 +1,6 @@
 package BlackJack.view;
 
-public class SimpleView implements IView 
+public class SimpleView implements IView
 {
 
   public void DisplayWelcomeMessage()
@@ -10,8 +10,7 @@ public class SimpleView implements IView
           System.out.println("Type 'p' to Play, 'h' to Hit, 's' to Stand or 'q' to Quit\n");
         }
 
-        public int GetInput()
-        {
+        public int GetInput() {
           try {
             int c = System.in.read();
             while (c == '\r' || c =='\n') {
