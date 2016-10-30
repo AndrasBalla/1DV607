@@ -5,25 +5,20 @@ public class Game {
   private Dealer m_dealer;
   private Player m_player;
 
-  public Game()
-  {
+  public Game() {
     m_dealer = new Dealer(new BlackJack.model.rules.RulesFactory());
     m_player = new Player();
   }
     
-    
-  public boolean IsGameOver()
-  {
+  public boolean IsGameOver() {
     return m_dealer.IsGameOver();
   }
   
-  public boolean IsDealerWinner()
-  {
+  public boolean IsDealerWinner() {
     return m_dealer.IsDealerWinner(m_player);
   }
   
-  public boolean NewGame()
-  {
+  public boolean NewGame() {
     return m_dealer.NewGame(m_player);
   }
   
@@ -35,8 +30,7 @@ public class Game {
     return m_dealer.Stand();
   }
   
-  public Iterable<Card> GetDealerHand()
-  {
+  public Iterable<Card> GetDealerHand() {
     return m_dealer.GetHand();
   }
   
@@ -54,6 +48,13 @@ public class Game {
   {
     return m_player.CalcScore();
   }
-    
-  
+
+  public Dealer getDealer(){
+    return m_dealer;
+  }
+
+  public Player getPlayer(){
+    return m_player;
+  }
+
 }

@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.Observable;
 
-//TODO: Implement Observer
 public class Player extends Observable{
 
   private List<Card> m_hand;
@@ -16,6 +15,8 @@ public class Player extends Observable{
   
   public void DealCard(Card a_addToHand) {
     m_hand.add(a_addToHand);
+    setChanged();
+    notifyObservers();
   }
   
   public Iterable<Card> GetHand() {

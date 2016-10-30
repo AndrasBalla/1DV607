@@ -14,7 +14,6 @@ public class Soft17HitStrategy implements IHitStrategy {
                 score -= 10;
             }
         }
-        // TODO: This operation should only be done once for each Ace in the hand !!! .
         return score < g_hitLimit;
     }
 }

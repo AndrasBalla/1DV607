@@ -15,11 +15,6 @@ public class Dealer extends Player {
     //m_hitRule = a_rulesFactory.GetHitRule();
     m_hitRule = a_rulesFactory.GetSoft17HitRule();
     m_winRule = a_rulesFactory.GetBasicWinRule();
-    
-    /*for(Card c : m_deck.GetCards()) {
-      c.Show(true);
-      System.out.println("" + c.GetValue() + " of " + c.GetColor());
-    }    */
   }
   
   
