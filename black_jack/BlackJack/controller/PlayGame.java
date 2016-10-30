@@ -2,8 +2,7 @@ package BlackJack.controller;
 
 import BlackJack.view.IView;
 import BlackJack.model.Game;
-import java.util.Observable;
-import java.util.Observer;
+import BlackJack.model.Observer;
 
 public class PlayGame implements Observer {
   private Game a_game;
@@ -17,9 +16,10 @@ public class PlayGame implements Observer {
   }
 
   public boolean Play() {
+
     a_view.DisplayWelcomeMessage();
-    a_game.getDealer().addObserver(this);
-    a_game.getPlayer().addObserver(this);
+    a_game.getDealer().registerObserver(this);
+    a_game.getPlayer().registerObserver(this);
 
     a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
     a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
@@ -48,15 +48,15 @@ public class PlayGame implements Observer {
     a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
     a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
     try {
-      // thread to sleep for 5000 milliseconds
-      Thread.sleep(4000);
+      // thread to sleep for 4000 milliseconds
+      Thread.sleep(1500);
     } catch (Exception e) {
       System.out.println(e);
     }
   }
 
   @Override
-  public void update(Observable o, Object arg){
+  public void update() {
     print();
   }
 }
