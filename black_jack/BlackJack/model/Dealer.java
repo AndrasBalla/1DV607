@@ -33,7 +33,6 @@ public class Dealer extends Player {
       ShowHand();
       while (m_hitRule.DoHit(this)){
         deal(this);
-
       }
       return true;
     }
