@@ -49,12 +49,11 @@ public class Dealer extends Player {
   }
 
   public boolean IsDealerWinner(Player a_player) {
-    return m_winRule.equalOrHigherScore(this, a_player);
+    return m_winRule.instantWin(this, a_player) || m_winRule.progressWin(this, a_player);
   }
 
   public boolean IsGameOver(Player a_player) {
-    System.out.println(this.IsDealerWinner(a_player));
-    if (m_deck != null && (m_hitRule.DoHit(this) != true || this.IsDealerWinner(a_player))) {
+    if (m_deck != null && (m_hitRule.DoHit(this) != true || m_winRule.instantWin(this, a_player))) {
         return true;
     }
     return false;
