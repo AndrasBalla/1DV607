@@ -19,7 +19,7 @@ public class Dealer extends Player {
   
   
   public boolean NewGame(Player a_player) {
-    if (m_deck == null || IsGameOver()) {
+    if (m_deck == null || IsGameOver(a_player)) {
       m_deck = new Deck();
       ClearHand();
       a_player.ClearHand();
@@ -41,7 +41,7 @@ public class Dealer extends Player {
   }
 
   public boolean Hit(Player a_player) {
-    if (m_deck != null && a_player.CalcScore() < g_maxScore && !IsGameOver()) {
+    if (m_deck != null && a_player.CalcScore() < g_maxScore && !IsGameOver(a_player)) {
       duplicateCode(a_player);
       return true;
     }
@@ -49,17 +49,12 @@ public class Dealer extends Player {
   }
 
   public boolean IsDealerWinner(Player a_player) {
-    if (a_player.CalcScore() > g_maxScore) {
-      return true;
-    } else if (CalcScore() > g_maxScore) {
-      return false;
-    }
-
     return m_winRule.equalOrHigherScore(this, a_player);
   }
 
-  public boolean IsGameOver() {
-    if (m_deck != null && m_hitRule.DoHit(this) != true) {
+  public boolean IsGameOver(Player a_player) {
+    System.out.println(this.IsDealerWinner(a_player));
+    if (m_deck != null && (m_hitRule.DoHit(this) != true || this.IsDealerWinner(a_player))) {
         return true;
     }
     return false;

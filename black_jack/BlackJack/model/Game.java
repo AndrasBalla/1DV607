@@ -11,10 +11,7 @@ public class Game {
   }
     
   public boolean IsGameOver() {
-    if (m_player.isGameOver()){
-
-    }
-    return m_dealer.IsGameOver() || m_player.isGameOver();
+    return m_dealer.IsGameOver(m_player);
   }
   
   public boolean IsDealerWinner() {
