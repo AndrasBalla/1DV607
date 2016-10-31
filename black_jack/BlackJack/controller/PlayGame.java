@@ -51,7 +51,7 @@ public class PlayGame implements Observer {
     a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
     a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
     try {
-      // thread to sleep for 4000 milliseconds
+      // thread to sleep for 1500 milliseconds
       Thread.sleep(1500);
     } catch (Exception e) {
       System.out.println(e);

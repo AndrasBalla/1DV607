@@ -14,6 +14,10 @@ public class RulesFactory {
     return new BasicWinRule();
   }
 
+  public IWinRule GetPlayerWinRule(){
+    return new PlayerWinRule();
+  }
+
   public INewGameStrategy GetNewGameRule() {
     return new AmericanNewGameStrategy();
   }

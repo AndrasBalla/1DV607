@@ -80,8 +80,4 @@ public class Player implements Subject {
             observer.update();
         }
     }
-
-    public boolean isGameOver(){
-        return CalcScore() > 21;
-    }
 }

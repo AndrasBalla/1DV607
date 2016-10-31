@@ -2,8 +2,7 @@ package BlackJack.model.rules;
 
 import BlackJack.model.Player;
 
-
-public class BasicWinRule implements IWinRule{
+public class PlayerWinRule implements IWinRule{
     protected final int g_maxScore = 21;
 
     public boolean progressWin(Player a_dealer, Player a_player){
@@ -13,8 +12,10 @@ public class BasicWinRule implements IWinRule{
             return true;
         }else if (a_dealer.CalcScore() > g_maxScore){
             return false;
+        }else if (a_dealer.CalcScore() == a_player.CalcScore()){
+            return false;
         }else {
-            return a_dealer.CalcScore() >= a_player.CalcScore();
+            return a_dealer.CalcScore() > a_player.CalcScore();
         }
     }
 

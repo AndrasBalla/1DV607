@@ -32,7 +32,7 @@ public class Dealer extends Player {
     if (m_deck != null){
       ShowHand();
       while (m_hitRule.DoHit(this)){
-        duplicateCode(this);
+        deal(this);
 
       }
       return true;
@@ -42,14 +42,14 @@ public class Dealer extends Player {
 
   public boolean Hit(Player a_player) {
     if (m_deck != null && a_player.CalcScore() < g_maxScore && !IsGameOver(a_player)) {
-      duplicateCode(a_player);
+      deal(a_player);
       return true;
     }
     return false;
   }
 
   public boolean IsDealerWinner(Player a_player) {
-    return m_winRule.instantWin(this, a_player) || m_winRule.progressWin(this, a_player);
+    return m_winRule.progressWin(this, a_player);
   }
 
   public boolean IsGameOver(Player a_player) {
@@ -58,8 +58,8 @@ public class Dealer extends Player {
     }
     return false;
   }
-  //TODO: Find a proper name for this.
-  private void duplicateCode(Player a_player){
+
+  private void deal(Player a_player){
     Card c = m_deck.GetCard();
     c.Show(true);
     a_player.DealCard(c);
