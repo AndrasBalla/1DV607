@@ -14,6 +14,6 @@ public class Soft17HitStrategy implements IHitStrategy {
                 score -= 10;
             }
         }
-        return score < g_hitLimit;
+        return score <= g_hitLimit;
     }
 }

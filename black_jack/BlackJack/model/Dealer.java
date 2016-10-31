@@ -43,7 +43,6 @@ public class Dealer extends Player {
   public boolean Hit(Player a_player) {
     if (m_deck != null && a_player.CalcScore() < g_maxScore && !IsGameOver()) {
       duplicateCode(a_player);
-      
       return true;
     }
     return false;

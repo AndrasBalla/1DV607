@@ -8,21 +8,24 @@ public class PlayGame implements Observer {
   private Game a_game;
   private IView a_view;
   private Character[] expectedChar;
+  private boolean shouldPrint = true;
 
   public PlayGame(Game in_game, IView in_view) {
     a_game = in_game;
     a_view = in_view;
     expectedChar = in_view.getExpectedInput();
+    a_game.getDealer().registerObserver(this);
+    a_game.getPlayer().registerObserver(this);
   }
 
   public boolean Play() {
+    if (shouldPrint){
+      a_view.DisplayWelcomeMessage();
+      a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
+      a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
+      shouldPrint = false;
+    }
 
-    a_view.DisplayWelcomeMessage();
-    a_game.getDealer().registerObserver(this);
-    a_game.getPlayer().registerObserver(this);
-
-    a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
-    a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
 
     if (a_game.IsGameOver()) {
         a_view.DisplayGameOver(a_game.IsDealerWinner());
