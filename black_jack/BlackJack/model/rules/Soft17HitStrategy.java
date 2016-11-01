@@ -5,15 +5,15 @@ import BlackJack.model.Card;
 import BlackJack.model.Player;
 
 public class Soft17HitStrategy implements IHitStrategy {
-    private final int g_hitLimit = 17;
+    private final int s_hitLimit = 17;
 
     public boolean DoHit(Player a_dealer) {
         int score = a_dealer.CalcScore();
         for(Card c : a_dealer.GetHand()) {
-            if (c.GetValue() == Card.Value.Ace && score > 21) {
+            if (c.GetValue() == Card.Value.Ace && score == s_hitLimit) {
                 score -= 10;
             }
         }
-        return score <= g_hitLimit;
+        return score <= s_hitLimit;
     }
 }

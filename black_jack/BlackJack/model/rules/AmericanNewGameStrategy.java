@@ -7,24 +7,12 @@ import BlackJack.model.Card;
 
 class AmericanNewGameStrategy implements INewGameStrategy {
 
-  public boolean NewGame(Deck a_deck, Dealer a_dealer, Player a_player) {
-    Card c;
+  public boolean NewGame(Dealer a_dealer, Player a_player) {
 
-    c = a_deck.GetCard();
-    c.Show(true);
-    a_player.DealCard(c);
-
-    c = a_deck.GetCard();
-    c.Show(true);
-    a_dealer.DealCard(c);
-
-    c = a_deck.GetCard();
-    c.Show(true);
-    a_player.DealCard(c);
-
-    c = a_deck.GetCard();
-    c.Show(false);
-    a_dealer.DealCard(c);
+    a_dealer.deal(a_player,true);
+    a_dealer.deal(a_dealer,true);
+    a_dealer.deal(a_player,true);
+    a_dealer.deal(a_dealer,false);
 
     return true;
   }
