@@ -1,9 +1,10 @@
 package BlackJack.model.rules;
 
+import BlackJack.controller.IVisitor;
 import BlackJack.model.Player;
 
 
-public class BasicWinRule implements IWinRule{
+public class DealerWinRule implements IWinRule{
     protected final int g_maxScore = 21;
 
     public boolean progressWin(Player a_dealer, Player a_player){
@@ -28,5 +29,10 @@ public class BasicWinRule implements IWinRule{
         }else {
             return false;
         }
+    }
+
+    @Override
+    public void accept(IVisitor visitor) {
+        visitor.visit(this);
     }
 }

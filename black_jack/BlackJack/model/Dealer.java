@@ -1,5 +1,6 @@
 package BlackJack.model;
 
+import BlackJack.controller.IVisitor;
 import BlackJack.model.rules.*;
 
 public class Dealer extends Player {
@@ -9,11 +10,13 @@ public class Dealer extends Player {
   private IHitStrategy m_hitRule;
   private IWinRule m_winRule;
 
-  public Dealer(RulesFactory a_rulesFactory) {
-  
-    m_newGameRule = a_rulesFactory.GetNewGameRule();
-    m_hitRule = a_rulesFactory.GetHitRule();
-    m_winRule = a_rulesFactory.GetWinRule();
+  public Dealer(AbstractFactory a_rulesFactory) {
+    a_rulesFactory = FactoryProducer.getFactory("NEW");
+    m_newGameRule = a_rulesFactory.getNewGameStrategy("AMERICAN");
+    a_rulesFactory = FactoryProducer.getFactory("HIT");
+    m_hitRule = a_rulesFactory.getHitStrategy("BASIC");
+    a_rulesFactory = FactoryProducer.getFactory("WIN");
+    m_winRule = a_rulesFactory.getNewWinRule("DEALER");
   }
   
   
@@ -61,6 +64,14 @@ public class Dealer extends Player {
     Card c = m_deck.GetCard();
     c.Show(bool);
     a_player.DealCard(c);
+  }
+
+  @Override
+  public void accept(IVisitor visitor){
+    m_newGameRule.accept(visitor);
+    m_hitRule.accept(visitor);
+    m_winRule.accept(visitor);
+    visitor.visit(this);
   }
   
 }

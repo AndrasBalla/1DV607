@@ -1,10 +1,5 @@
 package BlackJack.view;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-
 public class SimpleView implements IView {
     private Character[] input ={'p','h','s','q'};
 
@@ -61,4 +56,8 @@ public class SimpleView implements IView {
       }
             
   }
+
+    public void PrintRules(String[] types){
+        System.out.println("Game Type: " + types[0] + "\nHit Rule: " + types[1] + " \nWin condition: " + types[2] + "\n");
     }
+}

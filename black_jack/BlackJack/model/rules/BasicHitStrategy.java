@@ -1,5 +1,6 @@
 package BlackJack.model.rules;
 
+import BlackJack.controller.IVisitor;
 import BlackJack.model.Player;
 
 class BasicHitStrategy implements IHitStrategy {
@@ -7,5 +8,10 @@ class BasicHitStrategy implements IHitStrategy {
 
     public boolean DoHit(Player a_dealer) {
       return a_dealer.CalcScore() < g_hitLimit;  
+    }
+
+    @Override
+    public void accept(IVisitor visitor) {
+        visitor.visit(this);
     }
 }

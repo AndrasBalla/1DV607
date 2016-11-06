@@ -1,5 +1,7 @@
 package BlackJack.model;
 
+import BlackJack.controller.IVisitor;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.LinkedList;
@@ -80,4 +82,7 @@ public class Player implements Subject {
             observer.update();
         }
     }
+
+    @Override
+    public void accept(IVisitor visitor){}
 }

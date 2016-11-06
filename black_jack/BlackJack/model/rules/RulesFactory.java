@@ -6,9 +6,7 @@ public class RulesFactory {
     return new BasicHitStrategy();
   }
 
-  public IWinRule GetWinRule(){return new BasicWinRule();}
+  public IWinRule GetWinRule(){return new DealerWinRule();}
 
-  public INewGameStrategy GetNewGameRule() {
-    return new AmericanNewGameStrategy();
-  }
+  public INewGameStrategy GetNewGameRule() {return new AmericanNewGameStrategy();}
 }

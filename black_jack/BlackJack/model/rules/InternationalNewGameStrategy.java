@@ -1,6 +1,6 @@
 package BlackJack.model.rules;
 
-import BlackJack.model.Deck;
+import BlackJack.controller.IVisitor;
 import BlackJack.model.Dealer;
 import BlackJack.model.Player;
 import BlackJack.model.Card;  
@@ -14,5 +14,10 @@ class InternationalNewGameStrategy implements INewGameStrategy {
     a_dealer.deal(a_player,true);
   
     return true;
+  }
+
+  @Override
+  public void accept(IVisitor visitor) {
+    visitor.visit(this);
   }
 }

@@ -9,6 +9,7 @@ public class PlayGame implements Observer {
   private IView a_view;
   private Character[] expectedChar;
   private boolean shouldPrint = true;
+  private IVisitor visitor = new Visitor();
 
   public PlayGame(Game in_game, IView in_view) {
     a_game = in_game;
@@ -21,6 +22,8 @@ public class PlayGame implements Observer {
   public boolean Play() {
     if (shouldPrint){
       a_view.DisplayWelcomeMessage();
+      a_game.getDealer().accept(visitor);
+      a_view.PrintRules(visitor.GetTypes());
       a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
       a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
       shouldPrint = false;

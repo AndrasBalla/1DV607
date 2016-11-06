@@ -1,6 +1,7 @@
 package BlackJack.model.rules;
 
 
+import BlackJack.controller.IVisitor;
 import BlackJack.model.Card;
 import BlackJack.model.Player;
 
@@ -15,5 +16,10 @@ public class Soft17HitStrategy implements IHitStrategy {
             }
         }
         return score <= s_hitLimit;
+    }
+
+    @Override
+    public void accept(IVisitor visitor) {
+        visitor.visit(this);
     }
 }

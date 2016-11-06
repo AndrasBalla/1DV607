@@ -1,5 +1,6 @@
 package BlackJack.model.rules;
 
+import BlackJack.controller.IVisitor;
 import BlackJack.model.Player;
 
 public class PlayerWinRule implements IWinRule{
@@ -29,5 +30,10 @@ public class PlayerWinRule implements IWinRule{
         }else {
             return false;
         }
+    }
+
+    @Override
+    public void accept(IVisitor visitor) {
+        visitor.visit(this);
     }
 }
