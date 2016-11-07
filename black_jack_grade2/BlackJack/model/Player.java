@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.LinkedList;
 
 public class Player implements Subject {
-    private ArrayList observers;
+    private ArrayList m_observers;
     private List<Card> m_hand;
     protected final int g_maxScore = 21;
 
     public Player() {
         m_hand = new LinkedList<>();
-        observers = new ArrayList();
+        m_observers = new ArrayList();
     }
 
     public void DealCard(Card a_addToHand) {
@@ -62,21 +62,21 @@ public class Player implements Subject {
 
     @Override
     public void registerObserver(Observer o) {
-        observers.add(o);
+        m_observers.add(o);
     }
 
     @Override
     public void removeObserver(Observer o) {
-        int i = observers.indexOf(o);
+        int i = m_observers.indexOf(o);
         if (i >= 0) {
-            observers.remove(i);
+            m_observers.remove(i);
         }
     }
 
     @Override
     public void notifyObservers() {
-        for (int i = 0; i < observers.size(); i++) {
-            Observer observer = (Observer)observers.get(i);
+        for (int i = 0; i < m_observers.size(); i++) {
+            Observer observer = (Observer) m_observers.get(i);
             observer.update();
         }
     }
