@@ -1,0 +1,1 @@
+After the feedback we have fixed the bugs (crashes when viewing a member that doesn't exist) and added enumerator for boattypes. We have cleaned up the diagrams and made changes were it where necessary.
